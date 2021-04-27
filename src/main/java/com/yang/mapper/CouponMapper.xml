@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yang.dao.CouponMapper" >
+  <resultMap id="BaseResultMap" type="com.yang.bean.Coupon" >
+    <constructor >
+      <idArg column="coupon_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="coupon_price" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="is_used" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="used_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    coupon_id, coupon_price, user_id, order_id, is_used, used_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from trade_coupon
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from trade_coupon
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yang.bean.Coupon" >
+    insert into trade_coupon (coupon_id, coupon_price, user_id, 
+      order_id, is_used, used_time
+      )
+    values (#{couponId,jdbcType=VARCHAR}, #{couponPrice,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=VARCHAR}, #{isUsed,jdbcType=DECIMAL}, #{usedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yang.bean.Coupon" >
+    insert into trade_coupon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="couponId != null" >
+        coupon_id,
+      </if>
+      <if test="couponPrice != null" >
+        coupon_price,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="isUsed != null" >
+        is_used,
+      </if>
+      <if test="usedTime != null" >
+        used_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="couponId != null" >
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="couponPrice != null" >
+        #{couponPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="isUsed != null" >
+        #{isUsed,jdbcType=DECIMAL},
+      </if>
+      <if test="usedTime != null" >
+        #{usedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yang.bean.Coupon" >
+    update trade_coupon
+    <set >
+      <if test="couponPrice != null" >
+        coupon_price = #{couponPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="isUsed != null" >
+        is_used = #{isUsed,jdbcType=DECIMAL},
+      </if>
+      <if test="usedTime != null" >
+        used_time = #{usedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yang.bean.Coupon" >
+    update trade_coupon
+    set coupon_price = #{couponPrice,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      is_used = #{isUsed,jdbcType=DECIMAL},
+      used_time = #{usedTime,jdbcType=TIMESTAMP}
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </update>
+</mapper>
