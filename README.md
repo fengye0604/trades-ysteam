@@ -5,4 +5,6 @@
   generator.properties
 - 配置自动生成代码的规则
   generatorConfig.xml
+  
+修改测试
 
