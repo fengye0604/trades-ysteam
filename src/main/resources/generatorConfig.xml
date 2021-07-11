@@ -66,7 +66,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-
+        <!-- 表和javabean文件对应关系配置 -->
         <table tableName="trade_coupon" domainObjectName="Coupon"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
